@@ -7,14 +7,14 @@
 namespace samp::classes {
 	class CChat {
 	public:
-		CChat*& reference() {
-			return *(CChat**)samp::address(OFFSET(chat::reference));
-		}
-		
 		void add_message(unsigned long color, const char* text) {
 			((void(__thiscall*)(CChat*, unsigned long, const char*))samp::address(OFFSET(chat::add_message)))(this, color, text);
 		}
 	};
+
+	inline CChat*& get_chat() {
+		return *(CChat**)samp::address(OFFSET(chat::reference));
+	}
 }
 
 
