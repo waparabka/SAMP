@@ -12,7 +12,6 @@ namespace offsets {
 }
 
 
-
 #define OFFSET(array) (array[static_cast<int>(samp::version())])
 
 #endif // !OFFSETS_HPP

@@ -12,7 +12,7 @@ namespace samp::classes {
 		}
 	};
 
-	inline CChat*& get_chat() {
+	inline CChat*& chat() {
 		return *(CChat**)samp::address(OFFSET(chat::reference));
 	}
 }
