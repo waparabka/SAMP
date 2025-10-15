@@ -23,7 +23,9 @@ if(USE_RAKHOOK)
     FetchContent_Declare(kthook GIT_REPOSITORY https://github.com/kin4stat/kthook.git)
     FetchContent_MakeAvailable(kthook)
     
-    target_sources(samp PRIVATE
+    add_library(rakhook)
+
+    target_sources(rakhook PRIVATE
         source/rakhook/rakhook.cpp
         
         source/raknet/BitStream.cpp
@@ -32,10 +34,13 @@ if(USE_RAKHOOK)
         source/raknet/StringCompressor.cpp
     )
 
-    target_include_directories(samp PRIVATE 
-        ${kthook_SOURCE_DIR}/include
+    target_include_directories(rakhook PUBLIC 
+        $<BUILD_INTERFACE:${kthook_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
     )
     
-    target_link_libraries(samp PRIVATE ktsignal kthook xbyak)
-    target_compile_definitions(samp PRIVATE USE_RAKHOOK)
+    target_link_libraries(rakhook PRIVATE ktsignal kthook xbyak)
+    target_compile_definitions(rakhook PRIVATE USE_RAKHOOK)
+
+    target_link_libraries(samp INTERFACE rakhook)
 endif()
