@@ -5,14 +5,14 @@
 
 
 namespace samp::classes {
-	class c_chat {
+	class CChat {
 	public:
-		c_chat*& reference() {
-			return *(c_chat**)samp::address(OFFSET(chat::reference));
+		CChat*& reference() {
+			return *(CChat**)samp::address(OFFSET(chat::reference));
 		}
 		
 		void add_message(unsigned long color, const char* text) {
-			((void(__thiscall*)(c_chat*, unsigned long, const char*))samp::address(OFFSET(chat::add_message)))(this, color, text);
+			((void(__thiscall*)(CChat*, unsigned long, const char*))samp::address(OFFSET(chat::add_message)))(this, color, text);
 		}
 	};
 }
