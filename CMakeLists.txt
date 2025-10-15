@@ -32,6 +32,6 @@ if(USE_RAKHOOK)
         source/raknet/StringCompressor.cpp
     )
     
-    target_link_libraries(samp PRIVATE kthook)
+    target_link_libraries(samp PRIVATE ktsignal kthook xbyak)
     target_compile_definitions(samp PRIVATE USE_RAKHOOK)
 endif()
