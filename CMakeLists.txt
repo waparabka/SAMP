@@ -31,6 +31,10 @@ if(USE_RAKHOOK)
         source/raknet/PluginInterface.cpp
         source/raknet/StringCompressor.cpp
     )
+
+    target_include_directories(samp PRIVATE 
+        ${kthook_SOURCE_DIR}/include
+    )
     
     target_link_libraries(samp PRIVATE ktsignal kthook xbyak)
     target_compile_definitions(samp PRIVATE USE_RAKHOOK)
