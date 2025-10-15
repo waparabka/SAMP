@@ -8,12 +8,12 @@ namespace samp::classes {
 	class CChat {
 	public:
 		void add_message(unsigned long color, const char* text) {
-			((void(__thiscall*)(CChat*, unsigned long, const char*))samp::address(OFFSET(chat::add_message)))(this, color, text);
+			((void(__thiscall*)(CChat*, unsigned long, const char*))OFFSET_BASED(offsets::chat::add_message))(this, color, text);
 		}
 	};
 
 	inline CChat*& chat() {
-		return *(CChat**)samp::address(OFFSET(chat::reference));
+		return *(CChat**)OFFSET_BASED(offsets::chat::reference);
 	}
 }
 

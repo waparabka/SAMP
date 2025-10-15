@@ -3,8 +3,6 @@
 
 #include <samp/offsets.hpp>
 
-using namespace offsets;
-
 
 namespace samp {
     enum class VERSION {
