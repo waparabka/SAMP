@@ -21,6 +21,7 @@ target_include_directories(samp PUBLIC
 )
 
 target_link_libraries(samp PUBLIC ktsignal kthook xbyak)
+target_compile_features(samp PUBLIC cxx_std_20)
 
 if(USE_RAKHOOK)
     message(STATUS "Building with rakhook support")

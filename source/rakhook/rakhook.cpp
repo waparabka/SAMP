@@ -17,7 +17,7 @@ bool handle_rpc_hooked(const decltype(rakhook::handle_rpc_hook)& hook, void* rak
     rakhook::rakpeer = rakpeer;
     rakhook::playerid = playerid;
 
-    RakNet::BitStream bs { std::_Bit_cast<unsigned char*>(const_cast<char*>(data)), static_cast<unsigned int>(length), true };
+    RakNet::BitStream bs { std::bit_cast<unsigned char*>(const_cast<char*>(data)), static_cast<unsigned int>(length), true };
 
     unsigned char id = 0;
     unsigned char* input = nullptr;
@@ -41,7 +41,7 @@ bool handle_rpc_hooked(const decltype(rakhook::handle_rpc_hook)& hook, void* rak
         bool used_alloca = false;
 
         if (BITS_TO_BYTES(bs.GetNumberOfUnreadBits()) < MAX_ALLOCA_STACK_ALLOCATION) {
-            input = std::_Bit_cast<unsigned char*>(alloca(BITS_TO_BYTES(bs.GetNumberOfUnreadBits())));
+            input = std::bit_cast<unsigned char*>(alloca(BITS_TO_BYTES(bs.GetNumberOfUnreadBits())));
             used_alloca = true;
         }
         else
@@ -82,7 +82,7 @@ bool handle_rpc_hooked(const decltype(rakhook::handle_rpc_hook)& hook, void* rak
     if (bits_data)
         bs.WriteBits(callback->GetData(), bits_data, false);
     
-    return hook.call_trampoline(rakpeer, std::_Bit_cast<char*>(bs.GetData()), bs.GetNumberOfBytesUsed(), playerid);
+    return hook.call_trampoline(rakpeer, std::bit_cast<char*>(bs.GetData()), bs.GetNumberOfBytesUsed(), playerid);
 }
 
 
@@ -93,12 +93,12 @@ bool rakhook::initialize() {
     if (!samp::address())
         return false;
 
-    const uintptr_t samp_info = *std::_Bit_cast<uintptr_t*>(OFFSET_BASED(offsets::rakhook::samp_info));
+    const uintptr_t samp_info = *std::bit_cast<uintptr_t*>(OFFSET_BASED(offsets::rakhook::samp_info));
 
     if (!samp_info)
         return false;
 
-    auto** rakclient_interface = std::_Bit_cast<RakClientInterface**>(samp_info + OFFSET(offsets::rakhook::rakclient_interface));
+    auto** rakclient_interface = std::bit_cast<RakClientInterface**>(samp_info + OFFSET(offsets::rakhook::rakclient_interface));
 
     if (!*rakclient_interface)
         return false;
@@ -106,7 +106,7 @@ bool rakhook::initialize() {
     rakclient = *rakclient_interface;
     rakclient_hooked = new c_rakclient_interface(rakclient);
 
-    *rakclient_interface = std::_Bit_cast<RakClientInterface*>(rakclient_hooked);
+    *rakclient_interface = std::bit_cast<RakClientInterface*>(rakclient_hooked);
 
     destroy_ri_hook.set_cb(&destory_ri_hooked);
     destroy_ri_hook.set_dest(OFFSET_BASED(offsets::rakhook::destroy_interface));
@@ -140,12 +140,12 @@ bool rakhook::emul_packet(RakNet::BitStream& pbs) {
     if (!initialized || !rakpeer)
         return false;
 
-    Packet* send_packet = std::_Bit_cast<Packet * (*)(size_t)>(OFFSET_BASED(offsets::rakhook::alloc_packet))(pbs.GetNumberOfBytesUsed());
+    Packet* send_packet = std::bit_cast<Packet * (*)(size_t)>(OFFSET_BASED(offsets::rakhook::alloc_packet))(pbs.GetNumberOfBytesUsed());
     memcpy(send_packet->data, pbs.GetData(), send_packet->length);
 
     char* packets = static_cast<char*>(rakpeer) + OFFSET(offsets::rakhook::offset_packets);
-    auto  write_lock = std::_Bit_cast<Packet * *(__thiscall*)(void*)>(OFFSET_BASED(offsets::rakhook::write_lock));
-    auto  write_unlock = std::_Bit_cast<void(__thiscall*)(void*)>(OFFSET_BASED(offsets::rakhook::write_unlock));
+    auto  write_lock = std::bit_cast<Packet * *(__thiscall*)(void*)>(OFFSET_BASED(offsets::rakhook::write_lock));
+    auto  write_unlock = std::bit_cast<void(__thiscall*)(void*)>(OFFSET_BASED(offsets::rakhook::write_unlock));
 
     *write_lock(packets) = send_packet;
     write_unlock(packets);
@@ -165,7 +165,7 @@ bool rakhook::emul_rpc(unsigned char id, RakNet::BitStream& rpc_bs) {
     bs.WriteCompressed<unsigned int>(BYTES_TO_BITS(rpc_bs.GetNumberOfBytesUsed()));
     bs.WriteBits(rpc_bs.GetData(), BYTES_TO_BITS(rpc_bs.GetNumberOfBytesUsed()), false);
 
-    return handle_rpc_hook.call_trampoline(rakpeer, std::_Bit_cast<char*>(bs.GetData()), bs.GetNumberOfBytesUsed(), rakhook::playerid);
+    return handle_rpc_hook.call_trampoline(rakpeer, std::bit_cast<char*>(bs.GetData()), bs.GetNumberOfBytesUsed(), rakhook::playerid);
 }
 
 
@@ -173,12 +173,12 @@ void rakhook::destroy() {
     if (!initialized)
         return;
 
-    const uintptr_t samp_info = *std::_Bit_cast<uintptr_t*>(OFFSET_BASED(offsets::rakhook::samp_info));
+    const uintptr_t samp_info = *std::bit_cast<uintptr_t*>(OFFSET_BASED(offsets::rakhook::samp_info));
 
     if (!samp_info)
         return;
 
-    auto** rakclient_interface = std::_Bit_cast<RakClientInterface**>(samp_info + OFFSET(offsets::rakhook::rakclient_interface));
+    auto** rakclient_interface = std::bit_cast<RakClientInterface**>(samp_info + OFFSET(offsets::rakhook::rakclient_interface));
     *rakclient_interface = rakclient;
     
     destroy_ri_hook.remove();
