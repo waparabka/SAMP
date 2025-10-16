@@ -2,7 +2,7 @@
 #define ENTITY_HPP
 
 #include <samp/samp.hpp>
-#include <samp/classes/matrix.hpp>
+#include <samp/math/matrix.hpp>
 
 
 namespace samp::classes {
@@ -86,14 +86,6 @@ namespace samp::classes {
 
         int has_exceeded_world_boundries(float px, float zx, float py, float ny) {
             return ((int(__thiscall*)(CEntity*, float, float, float, float))OFFSET_BASED(offsets::entity::has_exceeded_world_boundries))(this, px, zx, py, ny);
-        }
-
-        void set_clump_alpha(int value) {
-            ((void(__thiscall*)(CEntity*, int))OFFSET_BASED(offsets::entity::set_clump_alpha))(this, value);
-        }
-
-        void set_from_euler(CVector angles) {
-            ((void(__thiscall*)(CEntity*, CVector))OFFSET_BASED(offsets::entity::set_from_euler))(this, angles);
         }
 
         void get_euler_inverted(float* px, float* py, float* pz) {
