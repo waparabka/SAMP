@@ -2,8 +2,10 @@
 #define NETGAME_HPP
 
 #include <samp/samp.hpp>
-#include <samp/classes/player_pool.hpp>
 #include <samp/math/vector.hpp>
+
+#include <samp/classes/player_pool.hpp>
+#include <samp/classes/object_pool.hpp>
 
 #include <rakhook/raknet/BitStream.h>
 #include <rakhook/raknet/RakClientInterface.h>
@@ -116,15 +118,15 @@ namespace samp::classes {
             ((void(__thiscall*)(CNetGame*))OFFSET_BASED(offsets::netgame::reset_markers))(this);
         }
 
-        CPlayerPool* CNetGame::GetPlayerPool() {
+        CPlayerPool* get_player_pool() {
             return ((CPlayerPool * (__thiscall*)(CNetGame*))OFFSET_BASED(offsets::netgame::get_player_pool))(this);
         }
 
-        /*CObjectPool* CNetGame::GetObjectPool() {
-            return ((CObjectPool * (__thiscall*)(CNetGame*)) GetAddress(0x2E00))(this);
+        CObjectPool* get_object_pool() {
+            return ((CObjectPool * (__thiscall*)(CNetGame*))OFFSET_BASED(offsets::netgame::get_object_pool))(this);
         }
 
-        CActorPool* CNetGame::GetActorPool() {
+        /*CActorPool* CNetGame::GetActorPool() {
             return ((CActorPool * (__thiscall*)(CNetGame*)) GetAddress(0x2E10))(this);
         }
 
