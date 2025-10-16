@@ -30,8 +30,8 @@ samp::VERSION samp::version() {
             case 0x3195DD: v = VERSION::v037r2;  break;
             case 0xCC4D0:  v = VERSION::v037r31; break;
             case 0xCBCB0:  v = VERSION::v037r4;  break;
-            case 0xFDB60:  v = VERSION::v03dlr1; break;
             case 0xCBC90:  v = VERSION::v037r5;  break;
+            case 0xFDB60:  v = VERSION::v03dlr1; break;
             default: break;
         }
         initialized = true;
