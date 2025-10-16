@@ -531,6 +531,3 @@ namespace offsets {
 #define OFFSET_BASED(array) (samp::address(OFFSET(array)))
 
 #endif // !OFFSETS_HPP
-
-
-
