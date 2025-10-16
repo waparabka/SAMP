@@ -3,6 +3,7 @@
 
 #include <samp/samp.hpp>
 #include <samp/classes/ped.hpp>
+#include <samp/classes/object.hpp>
 
 
 namespace samp::classes {
@@ -88,9 +89,9 @@ namespace samp::classes {
             ((void(__thiscall*)(CPlayerPool*))OFFSET_BASED(offsets::player_pool::update_largest_id))(this);
         }
 
-        /*CObject* CPlayerPool::FindAccessory(CObject* object) {
+        CObject* find_accessory(CObject* object) {
             return ((CObject * (__thiscall*)(CPlayerPool*, CObject*))OFFSET_BASED(offsets::player_pool::find_accessory))(this, object);
-        }*/
+        }
 
         void set_local_player_name(const char* name) {
             ((void(__thiscall*)(CPlayerPool*, const char*))OFFSET_BASED(offsets::player_pool::set_local_player_name))(this, name);
