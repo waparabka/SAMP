@@ -2,6 +2,7 @@
 #define OBJECT_HPP
 
 #include <samp/samp.hpp>
+#include <samp/classes/vehicle.hpp>
 #include <samp/math/matrix.hpp>
 
 
@@ -20,9 +21,9 @@ namespace samp::classes {
             ((void(__thiscall*)(CObject*, const CVector*))OFFSET_BASED(offsets::object::set_rotation))(this, rotation);
         }
 
-        /*void attach_to_vehicle(CVehicle* vehicle) { // TODO: add CVehicle
-            ((void(__thiscall*)(CObject*, CVehicle))OFFSET_BASED(offsets::object::attach_to_vehicle))(this, vehicle);
-        }*/
+        void attach_to_vehicle(CVehicle* vehicle) {
+            ((void(__thiscall*)(CObject*, CVehicle*))OFFSET_BASED(offsets::object::attach_to_vehicle))(this, vehicle);
+        }
 
         void attach_to_object(CObject* object) {
             ((void(__thiscall*)(CObject*, CObject*))OFFSET_BASED(offsets::object::attach_to_object))(this, object);
