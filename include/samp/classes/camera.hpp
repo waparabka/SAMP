@@ -2,7 +2,7 @@
 #define CAMERA_HPP
 
 #include <samp/samp.hpp>
-#include <samp/classes/vector.hpp>
+#include <samp/math/vector.hpp>
 #include <samp/classes/entity.hpp>
 
 
