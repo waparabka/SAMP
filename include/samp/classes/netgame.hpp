@@ -7,6 +7,7 @@
 #include <samp/classes/player_pool.hpp>
 #include <samp/classes/object_pool.hpp>
 #include <samp/classes/pickup_pool.hpp>
+#include <samp/classes/vehicle_pool.hpp>
 
 #include <rakhook/raknet/BitStream.h>
 #include <rakhook/raknet/RakClientInterface.h>
@@ -127,19 +128,19 @@ namespace samp::classes {
             return ((CObjectPool * (__thiscall*)(CNetGame*))OFFSET_BASED(offsets::netgame::get_object_pool))(this);
         }
 
-        /*CActorPool* CNetGame::GetActorPool() {
+        /*CActorPool* CNetGame::GetActorPool() { // TODO: add GetActorPool
             return ((CActorPool * (__thiscall*)(CNetGame*)) GetAddress(0x2E10))(this);
-        }
-
-        CVehiclePool* CNetGame::GetVehiclePool() {
-            return ((CVehiclePool * (__thiscall*)(CNetGame*)) GetAddress(0x1170))(this);
         }*/
+
+        CVehiclePool* get_vehicle_pool() {
+            return ((CVehiclePool * (__thiscall*)(CNetGame*))OFFSET_BASED(offsets::netgame::get_vehicle_pool))(this);
+        }
 
         CPickupPool* get_pickup_pool() {
             return ((CPickupPool * (__thiscall*)(CNetGame*))OFFSET_BASED(offsets::netgame::get_pickup_pool))(this);
         }
 
-        /*CMenuPool* CNetGame::GetMenuPool() {
+        /*CMenuPool* CNetGame::GetMenuPool() { // TODO: add GetMenuPool
             return ((CMenuPool * (__thiscall*)(CNetGame*)) GetAddress(0x8140))(this);
         }*/
 
