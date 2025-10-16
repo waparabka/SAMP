@@ -4,6 +4,8 @@
 #include <samp/samp.hpp>
 #include <samp/classes/ped.hpp>
 #include <samp/classes/object.hpp>
+#include <samp/classes/local_player.hpp>
+#include <samp/classes/remote_player.hpp>
 
 
 namespace samp::classes {
@@ -61,21 +63,17 @@ namespace samp::classes {
             return ((const char*(__thiscall*)(CPlayerPool*))OFFSET_BASED(offsets::player_pool::get_local_player_name))(this);
         }
 
-        /*CRemotePlayer* CPlayerPool::GetPlayer(uint16_t nId) {
-            return ((CRemotePlayer * (__thiscall*)(CPlayerPool*, uint16_t)) GetAddress(0x10F0))(this, nId);
+        CRemotePlayer* get_player(uint16_t id) {
+            return ((CRemotePlayer * (__thiscall*)(CPlayerPool*, uint16_t))OFFSET_BASED(offsets::player_pool::get_player))(this, id);
         }
-
-        CPlayerInfo* CPlayerPool::GetAt(uint16_t nId) {
-            return ((CPlayerInfo * (__thiscall*)(CPlayerPool*, uint16_t)) GetAddress(0x10D0))(this, nId);
-        }*/
 
         int is_connected(uint16_t id) {
             return ((int(__thiscall*)(CPlayerPool*, uint16_t))OFFSET_BASED(offsets::player_pool::is_connected))(this, id);
         }
 
-        /*CLocalPlayer* get_local_player() {
+        CLocalPlayer* get_local_player() {
             return ((CLocalPlayer * (__thiscall*)(CPlayerPool*))OFFSET_BASED(offsets::player_pool::get_local_player))(this);
-        }*/
+        }
 
         int get_score(uint16_t id) {
             return ((int(__thiscall*)(CPlayerPool*, uint16_t))OFFSET_BASED(offsets::player_pool::get_score))(this, id);
