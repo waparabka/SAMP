@@ -2,6 +2,7 @@
 #define PED_HPP
 
 #include <samp/samp.hpp>
+#include <samp/classes/vehicle.hpp>
 #include <samp/classes/entity.hpp>
 
 
@@ -92,8 +93,8 @@ namespace samp::classes {
             return ((int(__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::is_passenger))(this);
         }
 
-        void* get_vehicle() { // TODO: add CVehicle
-            return ((void * (__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::get_vehicle))(this);
+        CVehicle* get_vehicle() {
+            return ((CVehicle * (__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::get_vehicle))(this);
         }
 
         void clear_weapons() {
@@ -212,8 +213,8 @@ namespace samp::classes {
             return ((CEntity * (__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::get_contact_entity))(this);
         }
 
-        void* get_contact_vehicle() { // TODO: add CVehicle
-            return ((void * (__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::get_contact_vehicle))(this);
+        CVehicle* get_contact_vehicle() {
+            return ((CVehicle * (__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::get_contact_vehicle))(this);
         }
 
         int get_stat() {
