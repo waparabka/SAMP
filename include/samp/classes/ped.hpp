@@ -292,10 +292,6 @@ namespace samp::classes {
             ((void(__thiscall*)(CPed*, int))OFFSET_BASED(offsets::ped::create_arrow))(this, color);
         }
 
-        void give_weapon(int weapon, int ammo) {
-            ((void(__thiscall*)(CPed*, int, int))OFFSET_BASED(offsets::ped::give_weapon))(this, weapon, ammo);
-        }
-
         void kill() {
             ((void(__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::kill))(this);
         }
@@ -306,10 +302,6 @@ namespace samp::classes {
 
         short get_keys(short* stick_x, short* stick_y) {
             return ((short(__thiscall*)(CPed*, short*, short*))OFFSET_BASED(offsets::ped::get_keys))(this, stick_x, stick_y);
-        }
-
-        int is_in_vehicle() {
-            return ((int(__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::is_in_vehicle))(this);
         }
 
         void destroy() {
