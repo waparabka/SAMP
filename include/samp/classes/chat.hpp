@@ -2,7 +2,7 @@
 #define CHAT_HPP
 
 #include <samp/samp.hpp>
-#include <samp/classes/rect.hpp>
+#include <samp/math/rect.hpp>
 
 #include <stdarg.h>
 #include <stdio.h>
