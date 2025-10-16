@@ -2,31 +2,23 @@
 #define CHAT_HPP
 
 #include <samp/samp.hpp>
+#include <samp/classes/rect.hpp>
 
 #include <stdarg.h>
 #include <stdio.h>
 
 
 namespace samp::classes {
-	class CRect {
-public:
-		long left, top;
-		long right, bottom;
-
-		CRect();
-		CRect(long left, long top, long right, long bottom);
-	};
-
-	enum EntryType {
-        ENTRY_TYPE_NONE = 0,
-        ENTRY_TYPE_CHAT = 1 << 1,
-        ENTRY_TYPE_INFO = 1 << 2,
-        ENTRY_TYPE_DEBUG = 1 << 3
-    };
-
-
 	class CChat {
 	public:
+		enum EntryType {
+			ENTRY_TYPE_NONE = 0,
+			ENTRY_TYPE_CHAT = 1 << 1,
+			ENTRY_TYPE_INFO = 1 << 2,
+			ENTRY_TYPE_DEBUG = 1 << 3
+		};
+
+
 		int get_mode() {
 			return ((int(__thiscall*)(CChat*))OFFSET_BASED(offsets::chat::get_mode))(this);
 		}
