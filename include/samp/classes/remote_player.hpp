@@ -169,6 +169,14 @@ namespace samp::classes {
         CPed* get_ped() {
             return ((CPed*)((uintptr_t)this + OFFSET_BASED(offsets::remote_player::get_ped)));
         }
+
+        float get_health() {
+            return *(float*)((uintptr_t)this + OFFSET_BASED(offsets::remote_player::get_health));
+        }
+
+        float get_armor() {
+            return *(float*)((uintptr_t)this + OFFSET_BASED(offsets::remote_player::get_armor));
+        }
     };
 }
 
