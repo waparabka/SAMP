@@ -2,6 +2,7 @@
 #define REMOTE_PLAYER_HPP
 
 #include <samp/samp.hpp>
+#include <samp/classes/ped.hpp>
 #include <samp/math/vector.hpp>
 #include <samp/math/matrix.hpp>
 
@@ -9,7 +10,7 @@
 namespace samp::classes {
     class CRemotePlayer {
     public:
-      void process() {
+        void process() {
             ((void(__thiscall*)(CRemotePlayer*))OFFSET_BASED(offsets::remote_player::process))(this);
         }
 
@@ -163,6 +164,10 @@ namespace samp::classes {
 
         void update_train(CMatrix* matrix, CVector* speed, float speed_val) {
             ((void(__thiscall*)(CRemotePlayer*, CMatrix*, CVector*, float))OFFSET_BASED(offsets::remote_player::update_train))(this, matrix, speed, speed_val);
+        }
+
+        CPed* get_ped() {
+            return ((CPed*)((uintptr_t)this + OFFSET_BASED(offsets::remote_player::get_ped)));
         }
     };
 }
