@@ -2,10 +2,11 @@
 #define VEHICLE_HPP
 
 #include <samp/samp.hpp>
+#include <samp/classes/entity.hpp>
 
 
 namespace samp::classes {
-    class CVehicle {
+    class CVehicle : CEntity {
     public:
         void reset_pointers() {
             ((void(__thiscall*)(CVehicle*))OFFSET_BASED(offsets::vehicle::reset_pointers))(this);
