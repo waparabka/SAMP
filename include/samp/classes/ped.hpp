@@ -7,7 +7,7 @@
 
 
 namespace samp::classes {
-    class CPed {
+    class CPed : public CEntity {
     public:
         void reset_pointers() {
             ((void(__thiscall*)(CPed*))OFFSET_BASED(offsets::ped::reset_pointers))(this);
