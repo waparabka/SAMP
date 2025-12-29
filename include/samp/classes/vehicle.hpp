@@ -6,7 +6,7 @@
 
 
 namespace samp::classes {
-    class CVehicle : CEntity {
+    class CVehicle : public CEntity {
     public:
         void reset_pointers() {
             ((void(__thiscall*)(CVehicle*))OFFSET_BASED(offsets::vehicle::reset_pointers))(this);
